@@ -21,30 +21,30 @@ export default function Home() {
         responseType: "blob",
       });
 
-      console.log(response.data)
+      
       const url = window.URL.createObjectURL(new Blob([response.data]))
-      console.log(url)
+      
 
 
       const link = document.createElement("a")
 
 
-      console.log(link)
+     
       link.href = url;
 
-      console.log(link.href)
+     
       link.setAttribute("download", selectedFile.name.replace(/\.[^/.]=$/, "") + ".pdf")
-      console.log(link)
+   
 
       document.body.appendChild(link)
-      console.log(link)
+      
       link.click()
       link.parentNode.removeChild(link)
       setSelectedFile(null)
       setDownloadError("")
       setConvert('File Converted Successfully')
     } catch (error) {
-      console.log(error)
+      
       if (error.response && error.response.status == 400) {
         setDownloadError("Error converting the file");
       }
