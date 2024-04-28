@@ -7,6 +7,9 @@ export default function Home() {
   const [convert, setConvert] = useState('')
   const [downloadError, setDownloadError] = useState('')
 
+const refresh = () => {
+  location.reload();
+}
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,18 +26,18 @@ export default function Home() {
 
       
       const url = window.URL.createObjectURL(new Blob([response.data]))
-      
+     
 
 
       const link = document.createElement("a")
 
 
-     
+      
       link.href = url;
 
-     
+      console.log(link.href)
       link.setAttribute("download", selectedFile.name.replace(/\.[^/.]=$/, "") + ".pdf")
-   
+      
 
       document.body.appendChild(link)
       
@@ -44,7 +47,7 @@ export default function Home() {
       setDownloadError("")
       setConvert('File Converted Successfully')
     } catch (error) {
-      
+    
       if (error.response && error.response.status == 400) {
         setDownloadError("Error converting the file");
       }
@@ -79,8 +82,10 @@ export default function Home() {
 
             <button onClick={handleSubmit} disabled={!selectedFile} className=' px-4 py-2 bg-blue-500 rounded-md hover:bg-blue-700 text-white font-bold font-sans disabled:pointer-events-none disabled:bg-gray-400'>Convert File</button>
             {convert ?
-
+  <div className=' text-center'>
               <p className=' text-green-500'>{convert}</p>
+              <button onClick={refresh} className=' text-blue-600 text-base'>Convert again?</button>
+              </div>
               :
               <p className=' text-red-500'>{downloadError}</p>
             }
