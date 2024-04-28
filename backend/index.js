@@ -7,6 +7,9 @@ import cors from 'cors'
 
 const app = express()
 const port = 3000
+app.get('/health', (req, res) => {
+    res.send('Hello World working!')
+})
 
 app.use(cors({
     origin: 'https://word-to-pdf-liart.vercel.app'
@@ -24,9 +27,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage })
-app.get('/health', (req, res) => {
-    res.send('Hello World working!')
-})
+
 
 app.post('/convertFile', upload.single('file'), (req, res, next) => {
     try {
