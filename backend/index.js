@@ -3,10 +3,12 @@ import express from 'express'
 import docxConverter from 'docx-pdf'
 import path from 'path'
 import cors from 'cors'
+import 'dotenv/config'
+
 
 
 const app = express()
-const port = 3000
+const port = process.env.port || 3000
 app.get('/health', (req, res) => {
     res.send('Hello World working!')
 })
