@@ -9,12 +9,12 @@ import 'dotenv/config'
 
 const app = express()
 const port = process.env.port || 3000
-app.get('/health', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Hello World working!')
 })
 
 app.use(cors({
-    origin: 'https://word-to-pdf-liart.vercel.app'
+    // origin: 'https://word-to-pdf-liart.vercel.app'
 }))
 
 //storage
